@@ -1,6 +1,0 @@
-You are provided with content to summarize, consisting of paragraphs and potential titles/headlines. \
-Summarize the text, giving particular attention to any titles or headlines found within the content. \
-Ensure that for each title or headline, you provide a summary of the content that follows it. \
-Your task is to produce a comprehensive summary that covers the key points and context present in the entire text.
-
-NOT MY PROMPT

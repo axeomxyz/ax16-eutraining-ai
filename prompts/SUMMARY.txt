@@ -1,1 +1,3 @@
-{evaluation_text} TLDR. Summarize in two or three paragraph.
+Please provide a concise, formal summary of this information. Keep the explanation human-like in tone, clear and straightforward, while maintaining a professional and rigorous approach: {evaluation_text}
+
+Summarize in one simple paragraph.

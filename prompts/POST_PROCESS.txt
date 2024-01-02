@@ -1,0 +1,22 @@
+Objective: Transform the provided text into a concise, direct, and detail-oriented paragraph.
+
+Text: "{text}"
+
+Instructions:
+- Content Refinement:
+    - Review the provided text carefully.
+    - Identify and retain all essential details and main points.
+    - Eliminate any filler words or superfluous content that does not contribute to the clarity or purpose of the text.
+
+- Clarity and Directness:
+    - Restructure the text to ensure it is straightforward and easy to understand.
+    - Ensure that each sentence directly contributes to the overall message and purpose of the text.
+
+- British English Standards:
+    - Adhere to British English spelling, grammar, and punctuation rules throughout the text.
+    - Pay special attention to British English conventions in word choice and sentence structure.
+
+- No Personal Observations or Summaries:
+    - Refrain from adding personal observations, introductory comments, concluding statements or summarizing paragraphs. Just focus on delivering the revised paragraph.
+
+Submit a revised text that is in second person, never in third, clear, concise, and maintains every main detail, presented in a direct paragraph format. 

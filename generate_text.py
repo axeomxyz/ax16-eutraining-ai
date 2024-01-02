@@ -1,21 +1,25 @@
 from gpt_calls import generate_section_gpt, generate_summary_gpt
 from models.models import CommunicationsExamInfo
 from utils import read_docx, case_study_extract, fetch_prompt_message
-from gpt_calls import generate_candidate_task_gpt, extract_point_of_views_gpt, extract_target_audience_gpt
+from gpt_calls import generate_candidate_task_gpt, extract_point_of_views_gpt, extract_target_audience_gpt, post_process_subsections_gpt, improve_section_gpt
 from config import settings
 
 import re
 from enum import Enum
 
 class Sections(Enum):
-    OBSERVATIONS = "Key observations"
+    #OBSERVATIONS = "Key observations"
+    CONVEYS_INFO = "Conveys Information and Opinions Clearly and Concisely"
+    TAILORS_MESSAGE = "Tailors the message to respond to the needs of the person or persons with which they communicate"
+    ARGUMENTS = "Uses Convincing Arguments and Solid Reasoning"
+    POINT_OF_VIEWS = "Takes into Account the Point of View of Others"
     GRAMMAR = "Grammar errors"
     TIPS = "Key tips to improve"
 
 
 def generate_full_text(candidate_response: str, exam_doc_path: str, perfect_response: str = "") -> str:
     """Generates the evaluation text and the summary text"""
-
+    print("hh")
     # get abbrev and candidate task -> get_exam_info(exam_doc_path)
     exam_info = get_exam_info(exam_doc_path)
 
@@ -23,8 +27,15 @@ def generate_full_text(candidate_response: str, exam_doc_path: str, perfect_resp
     add_candidate_abbreviations(candidate_response, exam_info)
  
     # generate evaluation text
-    evaluation_text = generate_evaluation_text(candidate_response, exam_info, perfect_response)
+    observations, grammar, tips = generate_evaluation_text(candidate_response, exam_info, perfect_response)
 
+
+    observations = improve_section_gpt(observations)
+    #grammar = improve_section_gpt(grammar)
+    #tips = improve_section_gpt(tips)
+
+    evaluation_text = observations + "\n\n" + grammar + "\n\n" + tips
+    
     # generate summary text
     summary_text = generate_summary_gpt(evaluation_text)
 
@@ -37,13 +48,49 @@ def generate_evaluation_text(candidate_response: str, exam_info: CommunicationsE
     text_until_now = ""
 
     # 1. Generate observations section
-    OBSERVATIONS_GUIDELLINE: str = fetch_prompt_message(settings.OBSERVATIONS_GUIDELLINE_PATH)
+    
+    #OBSERVATIONS_GUIDELLINE: str = fetch_prompt_message(settings.OBSERVATIONS_GUIDELLINE_PATH)
+    CONEYS_INFO_GUIDELINE: str = fetch_prompt_message(settings.CONVEYS_INFO_PATH)
 
-    observations = generate_section_gpt(
-        Sections.OBSERVATIONS.value, candidate_response, exam_info, text_until_now, OBSERVATIONS_GUIDELLINE, perfect_response
+    conveys_info = generate_section_gpt(
+        Sections.CONVEYS_INFO.value, candidate_response, exam_info, text_until_now, CONEYS_INFO_GUIDELINE, perfect_response
     )
 
-    text_until_now = observations + "\n\n"
+    final_conveys_info = post_process_subsections_gpt(conveys_info)    
+
+    text_until_now = Sections.CONVEYS_INFO.value + ":\n" + final_conveys_info + "\n\n"
+
+    TAILORS_MESSAGE_GUIDELINE: str = fetch_prompt_message(settings.TAILORS_MESSAGE_PATH)
+
+    tailors_mess = generate_section_gpt(
+        Sections.TAILORS_MESSAGE.value, candidate_response, exam_info, text_until_now, TAILORS_MESSAGE_GUIDELINE, perfect_response
+    )
+
+    final_tailors_mess = post_process_subsections_gpt(tailors_mess)
+
+    text_until_now += Sections.TAILORS_MESSAGE.value + ":\n" + final_tailors_mess + "\n\n"
+
+    ARGUMENTS_GUIDELINE: str = fetch_prompt_message(settings.CONVICING_ARGUMENTS_PATH)
+
+    arguments = generate_section_gpt(
+        Sections.ARGUMENTS.value, candidate_response, exam_info, text_until_now, ARGUMENTS_GUIDELINE, perfect_response
+    )
+
+    final_arguments = post_process_subsections_gpt(arguments)
+
+    text_until_now += Sections.ARGUMENTS.value + ":\n" + final_arguments + "\n\n"
+
+    POINTS_OF_VIEW_GUIDELINE: str = fetch_prompt_message(settings.POINTS_OF_VIEW_PATH)
+
+    points_of_view = generate_section_gpt(
+        Sections.POINT_OF_VIEWS.value, candidate_response, exam_info, text_until_now, POINTS_OF_VIEW_GUIDELINE, perfect_response
+    )
+
+    final_points_of_view = post_process_subsections_gpt(points_of_view)
+
+    text_until_now += Sections.POINT_OF_VIEWS.value + ":\n" + final_points_of_view + "\n\n"
+
+    observations = text_until_now
 
     # 2. Generate grammar section
     GRAMMAR_GUIDELINE: str = fetch_prompt_message(settings.GRAMMAR_GUIDELINE_PATH)
@@ -52,7 +99,9 @@ def generate_evaluation_text(candidate_response: str, exam_info: CommunicationsE
         Sections.GRAMMAR.value, candidate_response, exam_info, text_until_now, GRAMMAR_GUIDELINE, perfect_response
     )
 
-    text_until_now = text_until_now + grammar + "\n\n"
+    final_grammar = post_process_subsections_gpt(grammar)
+
+    text_until_now += final_grammar + "\n\n"
 
     # 3. Generate tips section
     TIPS_GUIDELINE: str = fetch_prompt_message(settings.TIPS_GUIDELINE_PATH)
@@ -61,14 +110,16 @@ def generate_evaluation_text(candidate_response: str, exam_info: CommunicationsE
         Sections.TIPS.value, candidate_response, exam_info, text_until_now, TIPS_GUIDELINE, perfect_response
     )
 
-    text_until_now = text_until_now + tips + "\n\n"
+    final_tips = post_process_subsections_gpt(tips)
+
+    #text_until_now += final_tips + "\n\n"
 
     # Add titles just for testing
     #observations = "Observations\n" + observations
     #grammar = "Grammar\n" + grammar
     #tips = "Tips\n" + tips
     
-    return text_until_now
+    return observations, grammar, tips
 
 def add_candidate_abbreviations(cadidate_response, exam_info):
     pattern = r'\(([A-Z]{2,})\)\s*([\w\s]+)|([\w\s]+)\s*\(([A-Z]{2,})\)'

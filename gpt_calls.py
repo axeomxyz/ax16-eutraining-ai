@@ -112,3 +112,19 @@ def extract_target_audience_gpt(evaluation_text: str) -> str:
     audience = call_gpt_api("As a highly capable model, you possess the ability to discern the target audience of a given text", prompt)
 
     return audience
+
+def post_process_subsections_gpt(text: str):
+    POST_PROCESS: str = fetch_prompt_message(settings.POST_PROCESS_PATH)
+    prompt = POST_PROCESS.replace("{text}", text)
+
+    final_text = call_gpt_api("You are a British exam evaluator with extensive experience in communications and drafting skills, your expertise lies in correcting texts. You are proficient in British English and skilled at enhancing the clarity and effectiveness of written communication", prompt)
+    
+    return final_text
+
+def improve_section_gpt(text: str):
+    IMPROVE_FINAL_TEXT: str = fetch_prompt_message(settings.IMPROVE_FINAL_TEXT_PATH)
+    prompt = IMPROVE_FINAL_TEXT.replace("{text}", text)
+
+    final_text = call_gpt_api("You are a British exam evaluator with extensive experience in communications and drafting skills, your expertise lies in correcting texts. You are proficient in British English and skilled at enhancing the clarity and effectiveness of written communication", prompt)
+    
+    return final_text

@@ -1,0 +1,33 @@
+- Conveys Information and Opinions Clearly and Concisely
+Analyze the candidate's entire response with a focus on how information and opinions are conveyed. Consider the following aspects in your evaluation:
+
+- Clarity of Expression:
+   - Check for jargon and complex language. Is it necessary or could it be simplified?
+   - Are there instances where technical terms are used incorrectly? Provide examples and suggest correct usage.
+   - Evaluate sentence complexity. Are there overly complex sentences that could be simplified for better understanding?
+
+- Correctness and Fluency:
+   - Identify spelling and grammar mistakes. How do they affect the overall understanding of the text?
+   - Assess the accuracy of word usage. Are there words used in the wrong context?
+
+- Structure and Presentation:
+   - Examine the overall structure. Is the information presented in a logical sequence?
+   - Check paragraph lengths and transitions. Are they appropriate and do they aid in understanding the text?
+   - Review formatting elements like bullet points, subheadings, and bolded key words. Are they used effectively to enhance comprehension?
+
+- Balance and Detail:
+   - Assess if the response provides a balanced amount of detail. Is the focus on completeness affecting clarity?
+   - How well are examples used? Are they relevant and do they support the main points?
+
+- Main Message and Conclusion:
+   - Is the main message of the response clear and conveyed effectively?
+   - Is the response complete?
+   - Is there a conclusion summarizing the main points? If not, how does its absence impact the response?
+
+- Fact vs. Opinion:
+   - Evaluate how the candidate differentiates between facts and opinions. Are they clearly marked and relevant to the assignment?
+   - Are all sources treated equally or is there a lack of discernment in their usage?
+
+You are evaluating communication skills. Understanding of the topic is not a measure of relevance in communication.
+Offer feedback that assists the candidate in conveying information and opinions clearly and concisely, a vital skill for their performance in the official EPSO exam.
+Submit only the final feedback in form of natural well-structured paragraphs without headings

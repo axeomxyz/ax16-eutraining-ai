@@ -1,3 +1,1 @@
-Read carefully the next text:
-{evaluation_text}
-Now, Let's think step by step and in the end just answer this questions: What is the task that the candidate must accomplish?
+Here's part of the exam text: {evaluation_text}. Give it a thorough read, and then let's break it down together, step by step. Once you've got the full picture, just focus on answering this one key question: What exactly is the task that the candidate is supposed to complete?

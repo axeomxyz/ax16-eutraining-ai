@@ -4,7 +4,6 @@ The evaluation document is methodically divided into discrete sections, each aim
     - Tailors the message to the audience: A paragraph assessing the candidate's capacity to modify communication based on audience needs and contextual demands.
     - Uses convincing arguments and solid reasoning to put the message across: A A paragraph analyzing the structure and substance of the candidate's arguments, ensuring logical coherence and persuasive power.
     - Takes into account the point of view of others: A paragraph examining how the candidate acknowledges and integrates alternate viewpoints into their communication.
-    - Structure, Completeness, and Adherence to Task Requirements
  
 - Grammar errors: A meticulous account of the candidate's linguistic accuracy is presented here, with a focus on:
     - Spelling: A systematic review of the text to correct any spelling errors.

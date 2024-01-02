@@ -1,3 +1,1 @@
-Read carefully the next text:
-{evaluation_text}
-Now, let's consider step by step and, in the end, simply respond to this question: What points of view or opinions about the main topic are expressed in the text?
+First, read the provided text ({evaluation_text}) with attention. As you go through it, identify the various viewpoints or opinions expressed about the main topic. Consider each part carefully to understand the perspectives shared. After your thorough review, simply answer: What are the different points of view or opinions about the main topic presented in this text?

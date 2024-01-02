@@ -1,3 +1,1 @@
-Read carefully the next text:
-{evaluation_text}
-Now, let's think step by step and, in the end, simply respond to this question: What should be the target audience for the candidate's final response?
+Take a close look at the following text: {evaluation_text}. We'll break it down step by step. After fully understanding it, please identify: Who is the target audience that the candidate's response should be aimed at?

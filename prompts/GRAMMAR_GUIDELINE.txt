@@ -5,12 +5,12 @@ In this section, your focus will be on meticulously assessing the grammatical pr
     - Provide the correct spelling for each identified error.
     - Please provide feedback by explaining what should be changed and why
     
-1. Grammar mistakes:
+2. Grammar mistakes:
     - List grammatical errors found in the response, such as subject-verb agreement, incorrect tense usage, or improper sentence structure.
     - Specify the corrected grammatical form for each error.
     - Also, be vigilant about errors in capitalization, whether uppercase or lowercase letters are used correctly.
     - Please provide feedback by explaining what should be changed and why
 
-1. Punctuation:
+3. Punctuation:
     - Pinpoint punctuation mistakes, including the misuse of commas, periods, semicolons, etc.
     - Please provide feedback by explaining what should be changed and why
