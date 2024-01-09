@@ -121,10 +121,24 @@ def post_process_subsections_gpt(text: str):
     
     return final_text
 
-def improve_section_gpt(text: str):
-    IMPROVE_FINAL_TEXT: str = fetch_prompt_message(settings.IMPROVE_FINAL_TEXT_PATH)
-    prompt = IMPROVE_FINAL_TEXT.replace("{text}", text)
+def integrate_text(text: str):
+    MIX_SECTIONS: str = fetch_prompt_message(settings.MIX_SECTIONS_PATH)
+    prompt = MIX_SECTIONS.replace("{text}", text)
 
     final_text = call_gpt_api("You are a British exam evaluator with extensive experience in communications and drafting skills, your expertise lies in correcting texts. You are proficient in British English and skilled at enhancing the clarity and effectiveness of written communication", prompt)
     
+    return final_text
+
+def improve_section_gpt(name:str, text: str, task, audience):
+    IMPROVE_FINAL_TEXT: str = fetch_prompt_message(settings.IMPROVE_FINAL_TEXT_PATH)
+    AMBIENT_CONTEXT: str = fetch_prompt_message(settings.AMBIENT_CONTEXT_PATH)
+
+    prompt = IMPROVE_FINAL_TEXT.replace("{text}", text)
+    prompt = prompt.replace("{name}", name)
+    prompt = prompt.replace("{task}", task)
+    prompt = prompt.replace("{audience}", audience)
+    prompt = prompt.replace("{context}", AMBIENT_CONTEXT)
+
+    final_text = call_gpt_api("You possess strong analytical skills, enabling you to understand and enhance texts effectively.", prompt)
+    print(prompt)
     return final_text

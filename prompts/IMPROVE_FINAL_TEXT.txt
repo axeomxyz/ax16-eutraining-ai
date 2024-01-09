@@ -1,33 +1,17 @@
+Your primary responsibility is to generate detailed and personalized feedback for each candidate. Start by closely examining the feedback note on {name}. Use it as a baseline to pinpoint areas needing improvement.
 
-Task: Consolidate and Refine EPSO Exam Preparation evaluation
+Here's the feedback note for your reference:
 
-Objective: Combine the evaluation sections into a single narrative, preserving the section titles but ensuring a smooth and natural flow of ideas between them.
-Text for Revision:
-"{text}"
+'{text}'
 
-Instructions:
-- Merge and Streamline: 
-    - Integrate the paragraphs into one comprehensive document. Ensure the transition between sections is smooth and logical.
-    - Retain the titles for each of the sections.
-    - Avoid repetition of ideas or information across the sections. Don't start every paragraph like they were the first one, instead go straight to the point without introductory sentences.
+The candidate was tasked with: {task}
 
-- Maintain Key Points and Structure:
-    - Preserve the essential ideas, title and structure from each section. Ensure that the final document covers all the critical aspects originally presented.
-    - Focus on maintaining the essence and purpose of each section while blending them into a unified narrative.
+The canndidate target audience was: {audience}
 
-- Enhance Flow and Clarity:
-    - Revise sentence structures and word choices for a more natural and fluid reading experience.
-    - Ensure that the document follows a logical order, leading the reader seamlessly through each topic and argument.
+Bear in mind the specific context of the official exam. Avoid recommending strategies that aren't applicable, as we are preparing them for this particular exam format: {context}
 
-- Conformity with British English Standards:
-    - Adhere to British English spelling, grammar, and punctuation throughout the revised document.
-    - Use appropriate and consistent terminology, making sure technical terms are correctly spelled and used.
+Focus on deep analysis. Probe into the underlying reasons behind the errors and issues mentioned in the note. Go beyond the obvious to uncover what might be limiting the candidate's progress. This could be issues like poor time management, insufficient grasp of the topic, or other factors you identify.
 
--  Presentation Style:
-    - Maintain a professional and engaging tone throughout the document, addressing the reader directly.
-    - Ensure that the final document reflects a cohesive, well-argued, and thoughtfully presented briefing note.
+Your goal is to help each candidate recognize where they need to improve. Provide them with clear, constructive advice on how to better their briefing notes and overall communication skills. This is crucial for achieving higher scores in the EPSO exam.
 
-- No Personal Observations or Summaries:
-    - Refrain from adding personal observations, introductory comments, concluding paragraphs or summarizing statements. Just focus on delivering the revised paragraph.
-
-Submit a revised text that is in second person, never in third.
+Please integrate your feedback to the original text and always address the candidate in the second person.

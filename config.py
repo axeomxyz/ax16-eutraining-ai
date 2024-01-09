@@ -38,6 +38,7 @@ class Settings:
     POINTS_OF_VIEW_PATH = "prompts/POINTS_OF_VIEW.txt"
     CONVICING_ARGUMENTS_PATH = "prompts/CONVICING_ARGUMENTS.txt"
     IMPROVE_FINAL_TEXT_PATH = "prompts/IMPROVE_FINAL_TEXT.txt"
+    MIX_SECTIONS_PATH = "prompts/MIX_SECTIONS.txt"
 
     # DB Variables
     DB_PATH = "sqlite:///eutraining.db"

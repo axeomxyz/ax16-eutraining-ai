@@ -1,7 +1,7 @@
 from gpt_calls import generate_section_gpt, generate_summary_gpt
 from models.models import CommunicationsExamInfo
 from utils import read_docx, case_study_extract, fetch_prompt_message
-from gpt_calls import generate_candidate_task_gpt, extract_point_of_views_gpt, extract_target_audience_gpt, post_process_subsections_gpt, improve_section_gpt
+from gpt_calls import generate_candidate_task_gpt, extract_point_of_views_gpt, extract_target_audience_gpt, post_process_subsections_gpt, improve_section_gpt, integrate_text
 from config import settings
 
 import re
@@ -15,11 +15,11 @@ class Sections(Enum):
     POINT_OF_VIEWS = "Takes into Account the Point of View of Others"
     GRAMMAR = "Grammar errors"
     TIPS = "Key tips to improve"
+    OBSERVATIONS = "Keys observations"
 
 
 def generate_full_text(candidate_response: str, exam_doc_path: str, perfect_response: str = "") -> str:
     """Generates the evaluation text and the summary text"""
-    print("hh")
     # get abbrev and candidate task -> get_exam_info(exam_doc_path)
     exam_info = get_exam_info(exam_doc_path)
 
@@ -29,10 +29,10 @@ def generate_full_text(candidate_response: str, exam_doc_path: str, perfect_resp
     # generate evaluation text
     observations, grammar, tips = generate_evaluation_text(candidate_response, exam_info, perfect_response)
 
-
-    observations = improve_section_gpt(observations)
+    observations = integrate_text(observations)
     #grammar = improve_section_gpt(grammar)
     #tips = improve_section_gpt(tips)
+    observations =  Sections.OBSERVATIONS.value + ":\n\n" + observations
 
     evaluation_text = observations + "\n\n" + grammar + "\n\n" + tips
     
@@ -56,9 +56,11 @@ def generate_evaluation_text(candidate_response: str, exam_info: CommunicationsE
         Sections.CONVEYS_INFO.value, candidate_response, exam_info, text_until_now, CONEYS_INFO_GUIDELINE, perfect_response
     )
 
-    final_conveys_info = post_process_subsections_gpt(conveys_info)    
+    conveys_info = improve_section_gpt(Sections.CONVEYS_INFO.value, conveys_info, exam_info.candidate_task, exam_info.target_audience)    
+    conveys_info = post_process_subsections_gpt(conveys_info)
+    
 
-    text_until_now = Sections.CONVEYS_INFO.value + ":\n" + final_conveys_info + "\n\n"
+    text_until_now = Sections.CONVEYS_INFO.value + ":\n" + conveys_info + "\n\n"
 
     TAILORS_MESSAGE_GUIDELINE: str = fetch_prompt_message(settings.TAILORS_MESSAGE_PATH)
 
@@ -66,9 +68,10 @@ def generate_evaluation_text(candidate_response: str, exam_info: CommunicationsE
         Sections.TAILORS_MESSAGE.value, candidate_response, exam_info, text_until_now, TAILORS_MESSAGE_GUIDELINE, perfect_response
     )
 
-    final_tailors_mess = post_process_subsections_gpt(tailors_mess)
+    tailors_mess = improve_section_gpt(Sections.TAILORS_MESSAGE.value, tailors_mess, exam_info.candidate_task, exam_info.target_audience)
+    tailors_mess = post_process_subsections_gpt(tailors_mess)
 
-    text_until_now += Sections.TAILORS_MESSAGE.value + ":\n" + final_tailors_mess + "\n\n"
+    text_until_now += Sections.TAILORS_MESSAGE.value + ":\n" + tailors_mess + "\n\n"
 
     ARGUMENTS_GUIDELINE: str = fetch_prompt_message(settings.CONVICING_ARGUMENTS_PATH)
 
@@ -76,9 +79,10 @@ def generate_evaluation_text(candidate_response: str, exam_info: CommunicationsE
         Sections.ARGUMENTS.value, candidate_response, exam_info, text_until_now, ARGUMENTS_GUIDELINE, perfect_response
     )
 
-    final_arguments = post_process_subsections_gpt(arguments)
+    arguments = improve_section_gpt(Sections.ARGUMENTS.value, arguments, exam_info.candidate_task, exam_info.target_audience)
+    arguments = post_process_subsections_gpt(arguments)
 
-    text_until_now += Sections.ARGUMENTS.value + ":\n" + final_arguments + "\n\n"
+    text_until_now += Sections.ARGUMENTS.value + ":\n" + arguments + "\n\n"
 
     POINTS_OF_VIEW_GUIDELINE: str = fetch_prompt_message(settings.POINTS_OF_VIEW_PATH)
 
@@ -86,9 +90,10 @@ def generate_evaluation_text(candidate_response: str, exam_info: CommunicationsE
         Sections.POINT_OF_VIEWS.value, candidate_response, exam_info, text_until_now, POINTS_OF_VIEW_GUIDELINE, perfect_response
     )
 
-    final_points_of_view = post_process_subsections_gpt(points_of_view)
+    points_of_view = improve_section_gpt(Sections.POINT_OF_VIEWS.value, points_of_view, exam_info.candidate_task, exam_info.target_audience)
+    points_of_view = post_process_subsections_gpt(points_of_view)
 
-    text_until_now += Sections.POINT_OF_VIEWS.value + ":\n" + final_points_of_view + "\n\n"
+    text_until_now += Sections.POINT_OF_VIEWS.value + ":\n" + points_of_view + "\n\n"
 
     observations = text_until_now
 

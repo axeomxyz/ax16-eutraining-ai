@@ -1,0 +1,29 @@
+
+Task: Consolidate and Refine EPSO Exam Preparation evaluation
+
+Objective: Combine the evaluation sections into a single narrative, preserving the section titles but ensuring a smooth and natural flow of ideas between them.
+Text for Revision:
+"{text}"
+
+Instructions:
+- Merge and Streamline: 
+    - Integrate the paragraphs into one comprehensive document. Ensure the transition between sections is smooth and logical.
+    - Retain the titles for each of the sections.
+    - Avoid repetition of ideas or information across the sections. Don't start every paragraph like they were the first one, instead go straight to the point without introductory sentences.
+
+- Maintain Key Points and Structure:
+    - Preserve the essential ideas, title and structure from each section. Ensure that the final document covers all the critical aspects originally presented.
+    - Focus on maintaining the deep analysis of each section while blending them into a unified narrative.
+
+- Enhance Flow and Clarity:
+    - Revise sentence structures and word choices for a more natural and fluid reading experience.
+    - Ensure that the document follows a logical order, leading the reader seamlessly through each topic and argument.
+
+- Conformity with British English Standards:
+    - Adhere to British English spelling, grammar, and punctuation throughout the revised document.
+
+- No Personal Observations or Summaries:
+    - Refrain from adding personal observations, introductory comments, concluding paragraphs or summarizing statements. Just focus on delivering the revised paragraph.
+
+Submit the revised in second person, never in third.
+Your goal is to help each candidate recognize where they need to improve for achieving higher scores in the EPSO exam.
